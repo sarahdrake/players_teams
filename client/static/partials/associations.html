@@ -1,0 +1,25 @@
+<div ng-controller="AssociationsController">
+  <form>
+    <!-- ng-init ensures that the dropdown will show the first value by default -->
+    <select ng-model="newAssoc.playerIdx" ng-init="newAssoc.playerIdx = 0">
+      <!-- each option displays the player's name, but has a value of that player's index -->
+      <option ng-repeat="player in players" ng-bind="player.name">{{$index}}</option>
+    </select>
+    <select ng-model="newAssoc.team" ng-init="newAssoc.team = teams[0].name">
+      <option ng-repeat="team in teams" ng-bind="team.name">{{team.name}}</option>
+    </select>
+    <button type="submit" ng-click="addPlayerToTeam()">Recruit Player to Team</button>
+  </form>
+  <table>
+    <tr>
+      <td>Name</td>
+      <td>Team</td>
+      <td></td>
+    </tr>
+    <tr ng-repeat="player in players">
+      <td ng-bind="player.name"></td>
+      <td ng-bind="player.team"></td>
+      <td><button ng-click="removePlayerFromTeam($index)">Clear assignment</button></td>
+    </tr>
+  </table>
+</div>
